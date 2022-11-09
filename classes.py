@@ -1,0 +1,2 @@
+class AddressBook:
+    pass
