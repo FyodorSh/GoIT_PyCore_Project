@@ -1,10 +1,9 @@
-#for commit test
 import classes
+#test
 
 
 def main():
-    while True:
-        break
+    pass
 
 
 if __name__ == "__main__":
