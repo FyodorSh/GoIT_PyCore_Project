@@ -2,7 +2,8 @@ import classes
 
 
 def main():
-    pass
+    while True:
+        break
 
 
 if __name__ == "__main__":
