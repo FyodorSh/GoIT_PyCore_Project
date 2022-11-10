@@ -1,10 +1,40 @@
+from collections import UserDict
+
+
 class Field:
+    def __init__(self, value):
+        self.value = value
+
+
+class Name(Field):
+    pass
+
+
+class Phone(Field):
+    pass
+
+
+class Email(Field):
+    pass
+
+
+class Birthday(Field):
+    pass
+
+
+class Note(Field):
     pass
 
 
 class Record:
-    pass
+    def __init__(self, name):
+        self.name = Name(name)
+        self.phones = []
+        self.birthday = None
+        self.email = None
+        self.note = None
 
 
-class AddressBook:
-    pass
+class AddressBook(UserDict):
+    def __init__(self):
+        super().__init__()
