@@ -22,7 +22,7 @@ class Birthday(Field):
     pass
 
 
-class Note(Field):
+class Note:
     pass
 
 
@@ -32,7 +32,6 @@ class Record:
         self.phones = []
         self.birthday = None
         self.email = None
-        self.note = None
 
 
 class AddressBook(UserDict):
