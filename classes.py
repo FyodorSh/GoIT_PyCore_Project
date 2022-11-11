@@ -38,3 +38,6 @@ class Record:
 class AddressBook(UserDict):
     def __init__(self):
         super().__init__()
+
+    def say_hello(self):
+        print(f"Say hello!!!")
