@@ -72,3 +72,12 @@ class Record:
 class AddressBook(UserDict):
     def __init__(self):
         super().__init__()
+
+    def add_record(self, record):
+        self.data[record.name.value] = record
+
+    def get_record(self, name):
+        return self.data.get(name)
+
+    def remove_record(self, name):
+        del self.data[name]
