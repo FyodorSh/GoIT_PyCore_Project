@@ -3,7 +3,16 @@ from collections import UserDict
 
 class Field:
     def __init__(self, value):
+        self._value = None
         self.value = value
+
+    @property
+    def value(self):
+        return self._value
+
+    @value.setter
+    def value(self, value):
+        self._value = value
 
 
 class Name(Field):
@@ -11,7 +20,19 @@ class Name(Field):
 
 
 class Phone(Field):
-    pass
+    @Field.value.setter
+    def value(self, value):
+
+        if len(value) != 12:
+            raise ValueError("Перевірте чи вірно ви ввели номер")
+
+        if not value.isnumeric():
+            raise ValueError("Вводу підлягають лише цифри")
+
+        if not value.startswith(38):
+            raise ValueError("Номер має бути такого вигляду: 380505555555 ")
+
+        self._value = value
 
 
 class Email(Field):
