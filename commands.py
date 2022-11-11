@@ -1,0 +1,3 @@
+def stop():
+    quit()
+
