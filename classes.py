@@ -1,5 +1,6 @@
-from collections import UserDict
 import re
+from collections import UserDict
+from datetime import datetime
 
 
 class Field:
@@ -45,10 +46,15 @@ class Email(Field):
         self._value = value
 
 
-
-
 class Birthday(Field):
-    pass
+    @Field.value.setter
+    def value(self, value):
+        today = datetime.now().date()
+        birthday = datetime.strptime(value, "%Y-%m-%d").date()
+        if birthday > today:
+            raise ValueError("Помилкова дата дня народження")
+
+        self._value = value
 
 
 class Note(Field):
