@@ -1,4 +1,5 @@
 from collections import UserDict
+import re
 
 
 class Field:
@@ -36,7 +37,14 @@ class Phone(Field):
 
 
 class Email(Field):
-    pass
+    @Field.value.setter
+    def value(self, value):
+        if not re.match(r"^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}$", value):
+            raise ValueError("Перевірте вірність вводу email")
+
+        self._value = value
+
+
 
 
 class Birthday(Field):
