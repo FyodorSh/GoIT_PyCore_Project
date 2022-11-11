@@ -17,11 +17,16 @@ def find_command(wrong_command):
 
     return [k for k, v in commands.items() if v == max_overlap]
 
+
 def input_error(func):
     def wrapper(*args):
         try:
             return func(*args)
-        except KeyError:
+        except KeyError as e:
+            print(f"Key Error - {e}")
+        except ValueError as e:
+            print(f"Value Error - {e}")
+        except classes.CommandError:
             command_prefix = ' '.join(command for command in args[0][:args[1]])
             print(f"Wrong command - {command_prefix} {args[0][args[1]]}")
             correct_commands = find_command(args[0][args[1]])
@@ -42,7 +47,10 @@ def get_handler(command_list):
 
 @input_error
 def get_func(command_list: list, iter: int, command_name: str):
-    command = OPERATIONS[command_name]
+    try:
+        command = OPERATIONS[command_name]
+    except:
+        raise classes.CommandError
     iter += 1
     if command == read_command_list:
         command = read_command_list(command_list, iter)
@@ -70,7 +78,7 @@ OPERATIONS = {
 def main():
     while True:
         command = input("Enter command: ")
-        command_list = command.split(sep=" ")
+        command_list = command.strip().split(sep=" ")
         handler = get_handler(command_list)
         if handler is not None:
             if not command_list:

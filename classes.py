@@ -41,3 +41,7 @@ class AddressBook(UserDict):
 
     def say_hello(self):
         print(f"Say hello!!!")
+
+
+class CommandError(Exception):
+    pass
