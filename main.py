@@ -1,4 +1,5 @@
 import classes
+import notes
 
 
 def find_command(wrong_command):
@@ -66,12 +67,15 @@ def read_command_list(command_list: list, iter=0):
 
 
 test_rec = classes.AddressBook()
-
+my_notes = notes.Notes()
 
 OPERATIONS = {
-    'hello': test_rec.say_hello,
     'good': read_command_list,
-    'stop':stop
+    'stop': stop,
+    'add': read_command_list,
+    'show': read_command_list,
+    'note': my_notes.add_note,
+    'notes': my_notes.show_notes
 }
 
 
