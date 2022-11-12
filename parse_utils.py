@@ -1,8 +1,9 @@
 import classes
+import notes
 import decorator
 from exceptions import CommandError
-from operations import OPERATIONS
-
+# from operations import OPERATIONS
+from commands import stop
 
 def find_command(wrong_command):
     commands = {}
@@ -46,3 +47,12 @@ def read_command_list(command_list: list, iter=0):
 
 
 test_rec = classes.AddressBook()
+my_notes = notes.Notes()
+
+OPERATIONS = {
+    'stop': stop,
+    'add': read_command_list,
+    'show': read_command_list,
+    'note': my_notes.add_note,
+    'notes': my_notes.show_notes
+}
