@@ -1,16 +1,13 @@
-from parse_utils import get_handler
+from parse_utils import parse_input
 
 
 def main():
     while True:
-        command = input("Enter command: ")
-        command_list = command.strip().split(sep=" ")
-        handler = get_handler(command_list)
-        if handler is not None:
-            if not command_list:
-                handler()
-            else:
-                handler(command_list)
+        command_input = input("Enter command: ")
+        result = parse_input(command_input)
+        print(result)
+        if result == 'good bye':
+            break
 
 
 if __name__ == "__main__":
