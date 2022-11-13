@@ -1,6 +1,6 @@
-from commands import stop
+from commands import exit_function
 
 OPERATIONS = {
 
-    'stop': stop
+    'stop': exit_function
 }
