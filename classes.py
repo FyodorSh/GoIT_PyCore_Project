@@ -75,8 +75,28 @@ class Record:
         self.name = Name(name)
         self.phones = []
         self.birthday = None
-        self.address = None
         self.email = None
+        self.address = None
+
+    def get_info(self):
+        phones_info = ''
+        birthday_info = ''
+        email_info = ''
+        address_info = ''
+
+        for phone in self.phones:
+            phones_info += f'{phone.value}, '
+
+        if self.birthday:
+            birthday_info = f' Birthday : {self.birthday.value}'
+
+        if self.email:
+            email_info = f' Email : {self.email.value}'
+
+        if self.address:
+            address_info = f' Address : {self.address.value}'
+
+        return f'{self.name.value} : {phones_info[:-2]}{birthday_info}{email_info}{address_info}'
 
     def add_phone(self, phone):
         self.phones.append(Phone(phone))
@@ -134,6 +154,43 @@ class AddressBook(UserDict):
 
     def remove_record(self, name):
         del self.data[name]
+
+    def get_all_record(self):
+        return self.data
+
+    def search(self, value):
+        record_result = []
+        for record in self.get_all_record().values():
+            if value in record.name.value:
+                record_result.append(record)
+                continue
+            if record.email and value in record.email.value:
+                record_result.append(record)
+                continue
+            for phone in record.phones:
+                if value in phone.value:
+                    record_result.append(record)
+                    break
+
+        if not record_result:
+            raise ValueError("Контакту з таким значенням не існує.")
+        return record_result
+
+    def iterator(self, count=5):
+        page = []
+        i = 0
+
+        for record in self.data.values():
+            page.append(record)
+            i += 1
+
+            if i == count:
+                yield page
+                page = []
+                i = 0
+
+        if page:
+            yield page
 
 
 address_book = AddressBook()
