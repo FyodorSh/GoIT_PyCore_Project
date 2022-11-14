@@ -6,10 +6,14 @@ def input_error(func):
     def wrapper(*args):
         try:
             return func(*args)
-        except KeyError as e:
-            print(f"Key Error - {e}")
-        except ValueError as e:
-            print(f"Value Error - {e}")
+        except KeyError as exeption:
+           return (f"Key Error - {exeption}, Ви ввели невірне ім'я")
+        except ValueError as exeption:
+            return (f"Value Error - {exeption}")
+        except TypeError:
+            return ("Помилкова команда")
+        except IndexError:
+            return  ("Вводити потрібно (Ім'я та наступна інформація)")
         # except CommandError:
         #     command_prefix = ' '.join(command for command in args[0][:args[1]])
         #     print(f"Wrong command - {command_prefix} {args[0][args[1]]}")

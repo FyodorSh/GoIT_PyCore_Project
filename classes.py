@@ -46,6 +46,14 @@ class Email(Field):
         self._value = value
 
 
+class Address(Field):
+    @Field.value.setter
+    def value(self, value):
+        if len(value) == 0:
+            raise ValueError("Настільки короткої адреси існувати не може")
+        self._value = value
+
+
 class Birthday(Field):
     @Field.value.setter
     def value(self, value):
