@@ -25,14 +25,14 @@ class Phone(Field):
     @Field.value.setter
     def value(self, value):
 
-        if len(value) != 12:
-            raise ValueError("Перевірте чи вірно ви ввели номер")
-
         if not value.isnumeric():
             raise ValueError("Вводу підлягають лише цифри")
 
-        if not value.startswith(38):
-            raise ValueError("Номер має бути такого вигляду: 380505555555 ")
+        if not value.startswith('38'):
+            raise ValueError("На разі підтримуються тільки номера України (Приклад: 380995678344)")
+
+        if len(value) != 12:
+            raise ValueError("Перевірте довжину номера")
 
         self._value = value
 
@@ -51,6 +51,7 @@ class Address(Field):
     def value(self, value):
         if len(value) == 0:
             raise ValueError("Настільки короткої адреси існувати не може")
+
         self._value = value
 
 
@@ -74,10 +75,11 @@ class Record:
         self.name = Name(name)
         self.phones = []
         self.birthday = None
+        self.address = None
         self.email = None
 
     def add_phone(self, phone):
-        pass
+        self.phones.append(Phone(phone))
 
     def delete_phone(self, phone):
         for record_phone in self.phones:
@@ -90,6 +92,34 @@ class Record:
         for phone in phones:
             if not self.delete_phone(phone):
                 self.add_phone(phone)
+
+    def add_birthday(self, birthday_data):
+        self.birthday = Birthday(birthday_data)
+
+    def get_days_to_next_birthday(self):
+        if not self.birthday:
+            raise ValueError("В цього контакту відсутня дата народження")
+
+        today = datetime.now().date()
+        birthday = datetime.strptime(self.birthday.value, "%Y-%m-%d").date()
+        next_birthday_year = today.year
+
+        if today.month >= birthday.month and today.day > birthday.day:
+            next_birthday_year = next_birthday_year + 1
+
+        next_birthday = datetime(
+            year=next_birthday_year,
+            month=birthday.month,
+            day=birthday.day
+        )
+
+        return (next_birthday.date() - today).days
+
+    def add_address(self, address_data):
+        self.address = Address(address_data)
+
+    def add_email(self, email_data):
+        self.email = Email(email_data)
 
 
 class AddressBook(UserDict):
