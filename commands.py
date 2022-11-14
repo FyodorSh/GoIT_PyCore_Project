@@ -53,11 +53,10 @@ def delete_phone(data):
 
 @input_error
 def search_function(value):
-    search_records = ''
+
     records = address_book.search(value)
 
-    for record in records:
-        search_records += f'{record.get_info()}\n'
+    search_records = '\n'.join([record.get_info() for record in records])
     return search_records
 
 
