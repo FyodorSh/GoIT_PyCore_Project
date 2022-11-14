@@ -3,17 +3,14 @@ from exceptions import PathError
 from pathlib import Path
 import shutil
 
-audio = [".mp3", ".aac", ".ac3", ".wav", ".amr", ".ogg"]
-
-video = [".mp4", ".mov", ".avi", ".mkv"]
-
-image = [".jpg", ".jpeg", ".png", ".svg", ".gif"]
-
-doc = [".doc", ".docx", ".txt", ".pdf", ".xls", ".xlsx", ".pptx", ".rtf"]
-
-book = [".fb2", ".epub", ".mobi"]
-
-archive = [".zip", ".rar", ".tar", ".gz"]
+FILES_EXTENTIONS = {
+    "Audio": [".mp3", ".aac", ".ac3", ".wav", ".amr", ".ogg"],
+    "Video": [".mp4", ".mov", ".avi", ".mkv"],
+    "Images": [".jpg", ".jpeg", ".png", ".svg", ".gif"],
+    "Documents": [".doc", ".docx", ".txt", ".pdf", ".xls", ".xlsx", ".pptx", ".rtf"],
+    "Books": [".fb2", ".epub", ".mobi"],
+    "Archives": [".zip", ".rar", ".tar", ".gz"]
+}
 
 all_files = {
     'Audio': [],
@@ -29,7 +26,20 @@ known_types = set()
 
 unknown_types = set()
 
-initial_path = None
+initial_path: Path | None = None
+
+
+def check_path(path_to_folder):
+    path = Path(path_to_folder)
+
+    if path.exists():
+        if path.is_dir():
+            return path
+        else:
+            raise PathError(f'Path {path.absolute()} is not a directory')
+
+    else:
+        raise PathError(f'Path {path.absolute()} is not exist')
 
 
 def delete_empty(path):
@@ -41,30 +51,6 @@ def delete_empty(path):
                     element.rmdir()
                 except OSError:
                     pass
-
-
-def is_archive(file_path):
-    return file_path.suffix.lower() in archive
-
-
-def is_audio(file_path):
-    return file_path.suffix.lower() in audio
-
-
-def is_book(file_path):
-    return file_path.suffix.lower() in book
-
-
-def is_doc(file_path):
-    return file_path.suffix.lower() in doc
-
-
-def is_image(file_path):
-    return file_path.suffix.lower() in image
-
-
-def is_video(file_path):
-    return file_path.suffix.lower() in video
 
 
 def normalize(file_name):
@@ -85,19 +71,6 @@ def normalize(file_name):
     new_file_name = file_name.translate(TRANS)
 
     return new_file_name
-
-
-def check_path(path_to_folder):
-    path = Path(path_to_folder)
-
-    if path.exists():
-        if path.is_dir():
-            return path
-        else:
-            raise PathError(f'Path {path.absolute()} is not a directory')
-
-    else:
-        raise PathError(f'Path {path.absolute()} is not exist')
 
 
 def run_sorting(path_to_folder):
@@ -139,135 +112,53 @@ def sort_folder(path):
 
 def sort_files(path):
     suffix = path.suffix.lower()
+    file_name = path.stem
 
-    if is_audio(path):
+    for file_type, extentions in FILES_EXTENTIONS.items():
+        if suffix in extentions:
+            destination_folder = initial_path.joinpath(file_type)
+            destination_folder.mkdir(exist_ok=True)
 
-        audio_path = initial_path.joinpath("Audio")
-        audio_path.mkdir(exist_ok=True)
+            new_file_name = destination_folder.joinpath(
+                normalize(file_name) + suffix)
 
-        new_name = audio_path.joinpath(
-            normalize(path.stem) + suffix)
+            index = 0
+            while True:
+                try:
+                    path.rename(new_file_name)
+                    break
 
+                except FileExistsError:
+                    index += 1
+                    new_file_name = destination_folder.joinpath(
+                        normalize(file_name) + "_" + str(index) + suffix)
+
+            all_files[file_type].append(new_file_name.name)
+            known_types.add(suffix)
+
+            if file_type == 'Archives':
+                try:
+                    shutil.unpack_archive(
+                        new_file_name, destination_folder.joinpath(new_file_name.stem))
+                except shutil.ReadError:
+                    pass
+
+            return
+
+    new_file_name = initial_path.joinpath(
+        normalize(file_name) + suffix)
+
+    index = 0
+    while True:
         try:
-            path.rename(new_name)
+            path.rename(new_file_name)
+            break
 
         except FileExistsError:
-            new_name = audio_path.joinpath(
-                normalize(path.stem) + '(1)' + suffix)
-            path.rename(new_name)
+            index += 1
+            new_file_name = destination_folder.joinpath(
+                normalize(file_name) + "_" + str(index) + suffix)
 
-        all_files['Audio'].append(new_name.name)
-        known_types.add(suffix)
+    all_files['Other'].append(new_file_name.name)
+    unknown_types.add(suffix)
 
-    elif is_image(path):
-
-        images_path = initial_path.joinpath("Images")
-        images_path.mkdir(exist_ok=True)
-
-        new_name = images_path.joinpath(normalize(path.stem) + suffix)
-
-        try:
-            path.rename(new_name)
-
-        except FileExistsError:
-            new_name = images_path.joinpath(
-                normalize(path.stem) + '(1)' + suffix)
-            path.rename(new_name)
-
-        all_files['Images'].append(new_name.name)
-        known_types.add(suffix)
-
-    elif is_video(path):
-
-        video_path = initial_path.joinpath("Video")
-        video_path.mkdir(exist_ok=True)
-
-        new_name = video_path.joinpath(
-            normalize(path.stem) + suffix)
-
-        try:
-            path.rename(new_name)
-
-        except FileExistsError:
-            new_name = video_path.joinpath(
-                normalize(path.stem) + '(1)' + suffix)
-            path.rename(new_name)
-
-        all_files['Video'].append(new_name.name)
-        known_types.add(suffix)
-
-    elif is_doc(path):
-
-        doc_path = initial_path.joinpath("Documents")
-        doc_path.mkdir(exist_ok=True)
-
-        new_name = doc_path.joinpath(
-            normalize(path.stem) + suffix)
-
-        try:
-            path.rename(new_name)
-
-        except FileExistsError:
-            new_name = doc_path.joinpath(
-                normalize(path.stem) + '(1)' + suffix)
-            path.rename(new_name)
-
-        all_files['Documents'].append(new_name.name)
-        known_types.add(suffix)
-
-    elif is_book(path):
-
-        book_path = initial_path.joinpath("Books")
-        book_path.mkdir(exist_ok=True)
-
-        new_name = book_path.joinpath(normalize(path.stem) + suffix)
-
-        try:
-            path.rename(new_name)
-
-        except FileExistsError:
-            new_name = doc_path.joinpath(
-                normalize(path.stem) + '(1)' + suffix)
-            path.rename(new_name)
-
-        all_files['Books'].append(new_name.name)
-        known_types.add(suffix)
-
-    elif is_archive(path):
-
-        archive_path = initial_path.joinpath("Archives")
-        archive_path.mkdir(exist_ok=True)
-
-        try:
-            new_name = archive_path.joinpath(
-                normalize(path.stem) + suffix)
-            path.rename(new_name)
-
-        except FileExistsError:
-            new_name = archive_path.joinpath(
-                normalize(path.stem) + '(1)' + suffix)
-            path.rename(new_name)
-
-        all_files['Archives'].append(new_name.name)
-        known_types.add(suffix)
-
-        try:
-            shutil.unpack_archive(
-                new_name, archive_path.joinpath(new_name.stem))
-
-        except shutil.ReadError:
-            pass
-
-    else:
-        new_name = path.parent.joinpath(normalize(path.stem) + suffix)
-
-        try:
-            path.rename(new_name)
-
-        except FileExistsError:
-            new_name = path.parent.joinpath(
-                normalize(path.stem) + '(1)' + suffix)
-            path.rename(new_name)
-
-        all_files['Other'].append(new_name.name)
-        unknown_types.add(suffix)
