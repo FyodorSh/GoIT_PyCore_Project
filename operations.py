@@ -1,5 +1,6 @@
-from commands import exit_function, hello_function, add_record, del_record, change_phone, delete_phone, email_func, \
-    birthday_func, next_birthday_func, address_func, show_function, search_function
+from commands import exit_function, hello_function, add_record, del_record, change_phone, delete_phone, email_func,\
+    birthday_func, next_birthday_func, address_func, show_function, search_function, folder_sorting
+    
 
 OPERATIONS = {
 
@@ -18,5 +19,7 @@ OPERATIONS = {
     'show all': show_function,
     'search': search_function,
     'delete phone': delete_phone,
-    'delete': del_record
+    'delete': del_record,
+    'sort folder': folder_sorting
 }
+

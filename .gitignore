@@ -4,3 +4,4 @@ venv
 .vscode
 .history
 *.vsix
+__pycache__

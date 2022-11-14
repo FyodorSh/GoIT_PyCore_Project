@@ -1,5 +1,6 @@
 from classes import address_book, Record
 from decorator import input_error
+from sort_files import run_sorting
 
 
 @input_error
@@ -103,3 +104,7 @@ def email_func(data):
 def del_record(name):
     address_book.remove_record(name)
     return "You deleted the contact."
+
+
+def folder_sorting(path_to_folder):
+    return run_sorting(path_to_folder)
