@@ -1,4 +1,4 @@
-from commands import exit_function, hello_function, add_record, del_record
+from commands import exit_function, hello_function, add_record, del_record, change_phone, delete_phone
 
 OPERATIONS = {
 
@@ -9,5 +9,7 @@ OPERATIONS = {
     'hello': hello_function,
     'hi': hello_function,
     'add': add_record,
+    'change phone': change_phone,
+    'delete phone': delete_phone,
     'delete': del_record
 }

@@ -79,6 +79,18 @@ class Record:
     def add_phone(self, phone):
         pass
 
+    def delete_phone(self, phone):
+        for record_phone in self.phones:
+            if record_phone.value == phone:
+                self.phones.remove(record_phone)
+                return True
+        return False
+
+    def change_phones(self, phones):
+        for phone in phones:
+            if not self.delete_phone(phone):
+                self.add_phone(phone)
+
 
 class AddressBook(UserDict):
     def __init__(self):
