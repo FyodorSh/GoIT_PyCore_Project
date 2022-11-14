@@ -1,5 +1,5 @@
 from commands import exit_function, hello_function, add_record, del_record, change_phone, delete_phone, email_func, \
-    birthday_func, next_birthday_func, address_func
+    birthday_func, next_birthday_func, address_func, show_function, search_function
 
 OPERATIONS = {
 
@@ -15,6 +15,8 @@ OPERATIONS = {
     'add': add_record,
     'days to birthday': next_birthday_func,
     'change phone': change_phone,
+    'show all': show_function,
+    'search': search_function,
     'delete phone': delete_phone,
     'delete': del_record
 }
