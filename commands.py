@@ -47,6 +47,30 @@ def delete_phone(data):
 
 
 @input_error
+def search_function(value):
+
+    records = address_book.search(value)
+
+    search_records = '\n'.join([record.get_info() for record in records])
+    return search_records
+
+
+@input_error
+def show_function():
+    contacts = ''
+    page_number = 1
+
+    for page in address_book.iterator():
+        contacts += f'Page №{page_number}\n'
+
+    for record in page:
+        contacts += f'{record.get_info()}\n'
+        page_number += 1
+
+    return contacts
+
+
+@input_error
 def birthday_func(data):
     name, birthday_date = data.split(" ")
     record = address_book[name]
