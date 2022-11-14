@@ -68,6 +68,9 @@ class Record:
         self.birthday = None
         self.email = None
 
+    def add_phone(self, phone):
+        pass
+
 
 class AddressBook(UserDict):
     def __init__(self):
@@ -81,3 +84,6 @@ class AddressBook(UserDict):
 
     def remove_record(self, name):
         del self.data[name]
+
+
+address_book = AddressBook()
