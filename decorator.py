@@ -1,4 +1,4 @@
-from exceptions import CommandError
+from exceptions import CommandError, PathError
 import parse_utils
 
 

@@ -1,4 +1,4 @@
-from commands import exit_function, hello_function, add_record, del_record
+from commands import exit_function, hello_function, add_record, del_record, folder_sorting
 
 OPERATIONS = {
 
@@ -9,5 +9,6 @@ OPERATIONS = {
     'hello': hello_function,
     'hi': hello_function,
     'add': add_record,
-    'delete': del_record
+    'delete': del_record,
+    'sort folder': folder_sorting
 }

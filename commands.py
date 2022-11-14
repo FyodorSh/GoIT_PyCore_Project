@@ -1,4 +1,5 @@
 from classes import address_book, Record
+from sort_files import run_sorting
 
 
 def exit_function():
@@ -26,3 +27,7 @@ def add_record(data):
 def del_record(name):
     address_book.remove_record(name)
     return "You deleted the contact."
+
+
+def folder_sorting(path_to_folder):
+    return run_sorting(path_to_folder)
