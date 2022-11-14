@@ -1,6 +1,7 @@
-from commands import exit_function, hello_function, add_record, del_record, change_phone, delete_phone, email_func, \
-    birthday_func, next_birthday_func, address_func, show_function, search_function
+from commands import exit_function, hello_function, add_record, del_record, change_phone, delete_phone, email_func,\
+    birthday_func, next_birthday_func, address_func, show_function, search_function, folder_sorting
 from notes_commands import add_note, show_notes, add_tags, delete_note, edit_note, search_notes
+
 
 OPERATIONS = {
 
@@ -25,5 +26,6 @@ OPERATIONS = {
     'delete': del_record,
     'delete notes': delete_note,
     'edit notes': edit_note,
-    'show notes': show_notes
+    'show notes': show_notes,
+    'sort folder': folder_sorting
 }
