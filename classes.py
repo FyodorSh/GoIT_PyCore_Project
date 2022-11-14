@@ -79,13 +79,12 @@ class Record:
         self.address = None
 
     def get_info(self):
-        phones_info = ''
+
         birthday_info = ''
         email_info = ''
         address_info = ''
 
-        for phone in self.phones:
-            phones_info += f'{phone.value}, '
+        phones_info = ', '.join([phone.value for phone in self.phones])
 
         if self.birthday:
             birthday_info = f' Birthday : {self.birthday.value}'
