@@ -106,164 +106,168 @@ def run_sorting(path_to_folder):
     path = check_path(path_to_folder)
     initial_path = deepcopy(path)
 
-    sort_files(path)
+    sort_folder(path)
     delete_empty(path)
 
-    return f"Я відсортував усі файлив папці {path}\n"\
+    return f"Я відсортував усі файли в папці {path}\n"\
         f"Я зміг розсортувати наступні типи файлів: {known_types}\n"\
         f"А ці типи фалів я нажаль не знаю: {unknown_types} \n"
 
 
-def sort_files(path):
+def sort_folder(path):
 
     if path.is_dir():
-        if path.name in ['Music', 'Video', 'Images', 'Documents', 'Archive', 'Books']:
+        if path.name in ['Music', 'Video', 'Images', 'Documents', 'Archives', 'Books']:
             for element in path.iterdir():
-                sort_files(element)
+                sort_folder(element)
 
         else:
             try:
                 new_name = path.parent.joinpath(normalize(path.name))
                 path.rename(new_name)
                 for element in new_name.iterdir():
-                    sort_files(element)
+                    sort_folder(element)
 
             except PermissionError:
                 for element in path.iterdir():
-                    sort_files(element)
+                    sort_folder(element)
 
 # if path is file:
     else:
-        suffix = path.suffix.lower()
+        sort_files(path)
 
-        if is_audio(path):
 
-            audio_path = initial_path.joinpath("Audio")
-            audio_path.mkdir(exist_ok=True)
+def sort_files(path):
+    suffix = path.suffix.lower()
 
+    if is_audio(path):
+
+        audio_path = initial_path.joinpath("Audio")
+        audio_path.mkdir(exist_ok=True)
+
+        new_name = audio_path.joinpath(
+            normalize(path.stem) + suffix)
+
+        try:
+            path.rename(new_name)
+
+        except FileExistsError:
             new_name = audio_path.joinpath(
-                normalize(path.stem) + suffix)
+                normalize(path.stem) + '(1)' + suffix)
+            path.rename(new_name)
 
-            try:
-                path.rename(new_name)
+        all_files['Audio'].append(new_name.name)
+        known_types.add(suffix)
 
-            except FileExistsError:
-                new_name = audio_path.joinpath(
-                    normalize(path.stem) + '(1)' + suffix)
-                path.rename(new_name)
+    elif is_image(path):
 
-            all_files['Audio'].append(new_name.name)
-            known_types.add(suffix)
+        images_path = initial_path.joinpath("Images")
+        images_path.mkdir(exist_ok=True)
 
-        elif is_image(path):
+        new_name = images_path.joinpath(normalize(path.stem) + suffix)
 
-            images_path = initial_path.joinpath("Images")
-            images_path.mkdir(exist_ok=True)
+        try:
+            path.rename(new_name)
 
-            new_name = images_path.joinpath(normalize(path.stem) + suffix)
+        except FileExistsError:
+            new_name = images_path.joinpath(
+                normalize(path.stem) + '(1)' + suffix)
+            path.rename(new_name)
 
-            try:
-                path.rename(new_name)
+        all_files['Images'].append(new_name.name)
+        known_types.add(suffix)
 
-            except FileExistsError:
-                new_name = images_path.joinpath(
-                    normalize(path.stem) + '(1)' + suffix)
-                path.rename(new_name)
+    elif is_video(path):
 
-            all_files['Images'].append(new_name.name)
-            known_types.add(suffix)
+        video_path = initial_path.joinpath("Video")
+        video_path.mkdir(exist_ok=True)
 
-        elif is_video(path):
+        new_name = video_path.joinpath(
+            normalize(path.stem) + suffix)
 
-            video_path = initial_path.joinpath("Video")
-            video_path.mkdir(exist_ok=True)
+        try:
+            path.rename(new_name)
 
+        except FileExistsError:
             new_name = video_path.joinpath(
-                normalize(path.stem) + suffix)
+                normalize(path.stem) + '(1)' + suffix)
+            path.rename(new_name)
 
-            try:
-                path.rename(new_name)
+        all_files['Video'].append(new_name.name)
+        known_types.add(suffix)
 
-            except FileExistsError:
-                new_name = video_path.joinpath(
-                    normalize(path.stem) + '(1)' + suffix)
-                path.rename(new_name)
+    elif is_doc(path):
 
-            all_files['Video'].append(new_name.name)
-            known_types.add(suffix)
+        doc_path = initial_path.joinpath("Documents")
+        doc_path.mkdir(exist_ok=True)
 
-        elif is_doc(path):
+        new_name = doc_path.joinpath(
+            normalize(path.stem) + suffix)
 
-            doc_path = initial_path.joinpath("Documents")
-            doc_path.mkdir(exist_ok=True)
+        try:
+            path.rename(new_name)
 
+        except FileExistsError:
             new_name = doc_path.joinpath(
+                normalize(path.stem) + '(1)' + suffix)
+            path.rename(new_name)
+
+        all_files['Documents'].append(new_name.name)
+        known_types.add(suffix)
+
+    elif is_book(path):
+
+        book_path = initial_path.joinpath("Books")
+        book_path.mkdir(exist_ok=True)
+
+        new_name = book_path.joinpath(normalize(path.stem) + suffix)
+
+        try:
+            path.rename(new_name)
+
+        except FileExistsError:
+            new_name = doc_path.joinpath(
+                normalize(path.stem) + '(1)' + suffix)
+            path.rename(new_name)
+
+        all_files['Books'].append(new_name.name)
+        known_types.add(suffix)
+
+    elif is_archive(path):
+
+        archive_path = initial_path.joinpath("Archives")
+        archive_path.mkdir(exist_ok=True)
+
+        try:
+            new_name = archive_path.joinpath(
                 normalize(path.stem) + suffix)
+            path.rename(new_name)
 
-            try:
-                path.rename(new_name)
+        except FileExistsError:
+            new_name = archive_path.joinpath(
+                normalize(path.stem) + '(1)' + suffix)
+            path.rename(new_name)
 
-            except FileExistsError:
-                new_name = doc_path.joinpath(
-                    normalize(path.stem) + '(1)' + suffix)
-                path.rename(new_name)
+        all_files['Archives'].append(new_name.name)
+        known_types.add(suffix)
 
-            all_files['Documents'].append(new_name.name)
-            known_types.add(suffix)
+        try:
+            shutil.unpack_archive(
+                new_name, archive_path.joinpath(new_name.stem))
 
-        elif is_book(path):
+        except shutil.ReadError:
+            pass
 
-            book_path = initial_path.joinpath("Books")
-            book_path.mkdir(exist_ok=True)
+    else:
+        new_name = path.parent.joinpath(normalize(path.stem) + suffix)
 
-            new_name = book_path.joinpath(normalize(path.stem) + suffix)
+        try:
+            path.rename(new_name)
 
-            try:
-                path.rename(new_name)
+        except FileExistsError:
+            new_name = path.parent.joinpath(
+                normalize(path.stem) + '(1)' + suffix)
+            path.rename(new_name)
 
-            except FileExistsError:
-                new_name = doc_path.joinpath(
-                    normalize(path.stem) + '(1)' + suffix)
-                path.rename(new_name)
-
-            all_files['Books'].append(new_name.name)
-            known_types.add(suffix)
-
-        elif is_archive(path):
-
-            archive_path = initial_path.joinpath("Archives")
-            archive_path.mkdir(exist_ok=True)
-
-            try:
-                new_name = archive_path.joinpath(
-                    normalize(path.stem) + suffix)
-                path.rename(new_name)
-
-            except FileExistsError:
-                new_name = archive_path.joinpath(
-                    normalize(path.stem) + '(1)' + suffix)
-                path.rename(new_name)
-
-            all_files['Archives'].append(new_name.name)
-            known_types.add(suffix)
-
-            try:
-                shutil.unpack_archive(
-                    new_name, archive_path.joinpath(new_name.stem))
-
-            except shutil.ReadError:
-                pass
-
-        else:
-            new_name = path.parent.joinpath(normalize(path.stem) + suffix)
-
-            try:
-                path.rename(new_name)
-
-            except FileExistsError:
-                new_name = path.parent.joinpath(
-                    normalize(path.stem) + '(1)' + suffix)
-                path.rename(new_name)
-
-            all_files['Other'].append(new_name.name)
-            unknown_types.add(suffix)
+        all_files['Other'].append(new_name.name)
+        unknown_types.add(suffix)
