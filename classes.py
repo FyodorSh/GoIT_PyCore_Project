@@ -143,9 +143,6 @@ class Record:
 
 
 class AddressBook(UserDict):
-    def __init__(self):
-        super().__init__()
-
     def add_record(self, record):
         self.data[record.name.value] = record
 
