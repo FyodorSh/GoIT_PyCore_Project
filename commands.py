@@ -4,12 +4,18 @@ from decorator import input_error
 
 @input_error
 def exit_function():
-    """Function for close program"""
+    """Function for saving and closing program"""
+    address_book.save_to_file()
     return "good bye"
 
 
 @input_error
 def hello_function():
+    """Function for starting bot and loading previous savings"""
+    try:
+        address_book.load_from_file()
+    except:
+        pass
     return 'How can i help you?'
 
 

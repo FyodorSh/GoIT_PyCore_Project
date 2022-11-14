@@ -1,4 +1,5 @@
 import re
+import pickle
 from collections import UserDict
 from datetime import datetime
 
@@ -29,7 +30,8 @@ class Phone(Field):
             raise ValueError("Вводу підлягають лише цифри")
 
         if not value.startswith('38'):
-            raise ValueError("На разі підтримуються тільки номера України (Приклад: 380995678344)")
+            raise ValueError(
+                "На разі підтримуються тільки номера України (Приклад: 380995678344)")
 
         if len(value) != 12:
             raise ValueError("Перевірте довжину номера")
@@ -146,6 +148,13 @@ class AddressBook(UserDict):
     def __init__(self):
         super().__init__()
 
+    def __getstate__(self):
+        attributes = self.__dict__.copy()
+        return attributes
+
+    def __setstate__(self, value):
+        self.__dict__ = value
+
     def add_record(self, record):
         self.data[record.name.value] = record
 
@@ -191,6 +200,15 @@ class AddressBook(UserDict):
 
         if page:
             yield page
+
+    def load_from_file(self):
+        with open("Contacts.pickle", "rb") as file:
+            self.data = pickle.load(file)
+            return self
+
+    def save_to_file(self):
+        with open("Contacts.pickle", "wb") as file:
+            pickle.dump(self, file)
 
 
 address_book = AddressBook()
