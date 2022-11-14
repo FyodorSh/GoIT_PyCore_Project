@@ -23,6 +23,22 @@ def add_record(data):
     return f'You added new contact: {name} with this {phones}.'
 
 
+def change_phone(data):
+    name, *phones = data.split(' ')
+    record = address_book[name]
+    record.change_phones(phones)
+    return 'You changed phones.'
+
+
+def delete_phone(data):
+    name, phone = data.split(' ')
+
+    record = address_book[name]
+    if record.delete_phone(phone):
+        return f'Phone {phone} for {name} contact deleted.'
+    return f'{name} contact does not have this number'
+
+
 def del_record(name):
     address_book.remove_record(name)
     return "You deleted the contact."
