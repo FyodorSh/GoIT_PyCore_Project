@@ -62,9 +62,9 @@ def show_function():
     for page in address_book.iterator():
         contacts += f'Page №{page_number}\n'
 
-    for record in page:
-        contacts += f'{record.get_info()}\n'
-        page_number += 1
+        for record in page:
+            contacts += f'{record.get_info()}\n'
+            page_number += 1
 
     return contacts
 
