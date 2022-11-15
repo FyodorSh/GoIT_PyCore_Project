@@ -1,7 +1,7 @@
 from commands import exit_function, hello_function, add_record, del_record, change_phone, delete_phone, email_func,\
-    birthday_func, next_birthday_func, address_func, show_function, search_function, folder_sorting
+    birthday_func, next_birthday_func, address_func, show_function, search_function, folder_sorting,\
+    search_birthday_func
 from notes_commands import add_note, show_notes, add_tags, delete_note, edit_note, search_notes
-
 
 OPERATIONS = {
 
@@ -19,6 +19,7 @@ OPERATIONS = {
     'search notes': search_notes,
     'add': add_record,
     'days to birthday': next_birthday_func,
+    'birthdays in range': search_birthday_func,
     'change phone': change_phone,
     'show all': show_function,
     'search': search_function,

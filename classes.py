@@ -49,7 +49,7 @@ class Email(Field):
 class Address(Field):
     @Field.value.setter
     def value(self, value):
-        if len(value) == 0:
+        if not value:
             raise ValueError("Настільки короткої адреси існувати не може")
 
         self._value = value
@@ -187,6 +187,17 @@ class AddressBook(UserDict):
 
         if page:
             yield page
+
+    def get_birthdays_in_range(self, value):
+        birthdays = []
+        if not value.isnumeric:
+            raise ValueError("Потрібно ввести число")
+        days = int(value)
+
+        for record in self.data.values():
+            if record.birthday and days >= record.get_days_to_next_birthday():
+                birthdays.append(record)
+        return birthdays
 
 
 address_book = AddressBook()

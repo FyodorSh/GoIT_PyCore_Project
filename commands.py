@@ -78,10 +78,24 @@ def birthday_func(data):
     return f"{birthday_date} Дата дня народження створена"
 
 
+@input_error
 def next_birthday_func(name):
     name = name.strip()
     record = address_book[name]
     return f"Святкувати будем через {record.get_days_to_next_birthday()} днів"
+
+
+@input_error
+def search_birthday_func(value):
+    records_info = ""
+    records = address_book.get_birthdays_in_range(value)
+
+    if not records:
+        return 'Відсутні контакти з днем народження в данному діапазоні'
+
+    for record in records:
+        records_info += f"{record.get_info()}\n"
+    return records_info
 
 
 @input_error
