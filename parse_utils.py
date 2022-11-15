@@ -1,3 +1,5 @@
+import difflib
+
 import classes
 import decorator
 from exceptions import CommandError
@@ -14,36 +16,21 @@ def parse_input(user_input):
             break
     if data:
         return callback(command)(data.lstrip())
-    return callback(command)()
+    try:
+        return callback(command)()
+    except KeyError:
+        return find_command(command)
 
 
 def callback(command):
-    return OPERATIONS.get(command, break_func)
+    return OPERATIONS[command]
 
 
-def break_func():
-    # commands_variants = f"Wrong command - {command}"
-    # correct_commands = find_command(command)
-    # if correct_commands:
-    #     commands_variants += '\n Try: \n '
-    #     for correct_command in correct_commands:
-    #         commands_variants += f"{correct_command}"
-    # return commands_variants
-    return 'Wrong command'
+def find_command(wrong_command):
+    similar_commands = difflib.get_close_matches(wrong_command, OPERATIONS.keys(), n=5, cutoff=0.4)
+    if similar_commands:
+        return f'{wrong_command} is not found, maybe you mean these: {", ".join(similar_commands)}'
+    else:
+        return 'Wrong command'
 
-# def find_command(wrong_command):
-#     commands = {}
-#     max_overlap = 0
-#     for command in OPERATIONS:
-#         count = 0
-#         word_len = len(wrong_command) if len(wrong_command) < len(command) else len(command)
-#         for i in range(word_len):
-#             if wrong_command[i] == command[i]:
-#                 count += 1
-#             if wrong_command[::-1][i] == command[::-1][i]:
-#                 count += 1
-#         commands[command] = count
-#         max_overlap = count if count > max_overlap else max_overlap
-#
-#     return [k for k, v in commands.items() if v == max_overlap]
 
