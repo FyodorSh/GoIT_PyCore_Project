@@ -7,7 +7,7 @@ def print_note(key, value):
     result += f"note id - {key}\n"
     result += f"note text - {value.note_text}\n"
     if value.note_tags:
-        result += f"tags - {' '.join(tag for tag in value.note_tags)}\n"
+        result += f"tags - {' '.join(sorted(tag for tag in value.note_tags))}\n"
     return result
 
 @input_error
