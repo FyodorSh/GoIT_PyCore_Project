@@ -1,6 +1,6 @@
 from commands import (exit_function, hello_function, add_record, del_record, change_phone, delete_phone, email_func,
                       birthday_func, next_birthday_func, address_func, show_function, search_function, folder_sorting,
-                      search_birthday_func)
+                      search_birthday_func, add_phone_func)
 from notes_commands import add_note, show_notes, add_tags, delete_note, edit_note, search_notes, search_notes_by_tags
 
 OPERATIONS = {
@@ -11,6 +11,7 @@ OPERATIONS = {
     'hello': hello_function,
     'hi': hello_function,
     'add email': email_func,
+    'add phone': add_phone_func,
     'add birthday': birthday_func,
     'add address': address_func,
     'add note': add_note,
