@@ -1,4 +1,5 @@
 from classes import address_book
+from notes import user_notes
 from parse_utils import parse_input
 
 
@@ -12,6 +13,7 @@ def main():
                 break
     finally:
         address_book.save_contacts_to_file()
+        user_notes.save_notes_to_file()
 
 
 if __name__ == "__main__":
