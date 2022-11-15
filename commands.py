@@ -29,6 +29,14 @@ def add_record(data):
 
 
 @input_error
+def add_phone_func(data):
+    name, phone = data.split(" ", 1)
+    record = address_book[name]
+    record.add_phone(phone)
+    return 'You added phone'
+
+
+@input_error
 def change_phone(data):
     name, *phones = data.split(' ')
     record = address_book[name]
