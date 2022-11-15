@@ -47,8 +47,10 @@ class Notes:
         for key, value in self.notes.items():
             for tag in tags:
                 if tag in value.note_tags:
-                    search_result[key] = value
-                    break
+                    if tag not in search_result:
+                        search_result[tag] = {}
+                    search_result[tag][key] = value
+
         return search_result
 
     def sort_notes(self):
