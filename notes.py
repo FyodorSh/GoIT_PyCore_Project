@@ -40,4 +40,16 @@ class Notes:
                 search_result[key] = value
         return search_result
 
+    def search_notes_by_tags(self, tags):
+        search_result = {}
+        for key, value in self.notes.items():
+            search_result[key] = [0, value.note_text]
+            for tag in tags:
+                if tag in value.note_tags:
+                    search_result[key][0] += search_result[key][0]
+
+        # Сортировка
+        pass
+
+
 user_notes = Notes()
