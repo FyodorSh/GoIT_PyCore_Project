@@ -45,13 +45,13 @@ class Notes:
     def search_notes_by_tags(self, tags):
         search_result = {}
         for key, value in self.notes.items():
-            search_result[key] = [0, value.note_text]
             for tag in tags:
                 if tag in value.note_tags:
-                    search_result[key][0] += search_result[key][0]
+                    if tag not in search_result:
+                        search_result[tag] = {}
+                    search_result[tag][key] = value
 
-        # Сортировка
-        pass
+        return search_result
 
     def save_notes_to_file(self):
         with open('notes.pickle', 'wb') as file:

@@ -17,7 +17,7 @@ def show_notes():
         result += f"note id - {key}\n"
         result += f"note text - {value.note_text}\n"
         if value.note_tags:
-            result += f"tags - {' '.join(tag for tag in value.note_tags)}\n"
+            result += f"tags - {' '.join(sorted(tag for tag in value.note_tags))}\n"
     return result
 
 
@@ -58,3 +58,23 @@ def search_notes(data):
         if value.note_tags:
             result += f"tags - {' '.join(tag for tag in value.note_tags)}\n"
     return result
+
+
+@input_error
+def search_notes_by_tags(data):
+    tags = data.split(" ")
+    search_results = user_notes.search_notes_by_tags(tags)
+
+    if not search_results:
+        return "There are no notes with these tags"
+
+    output = ''
+
+    for tag in sorted(search_results):
+        output += f"Tag - {tag}:\n"
+
+        for key, note in search_results[tag].items():
+            output += f"  {key}: {note.note_text}\n"
+        output += "------------------------------------\n"
+
+    return output
