@@ -10,12 +10,15 @@ def print_note(key, value):
         result += f"tags - {' '.join(tag for tag in value.note_tags)}\n"
     return result
 
-def add_note(data: str) -> str:
+@input_error
+def add_note(data):
+
     note_text = data
     user_notes.add_note(note_text)
     return "New note added"
 
 
+@input_error
 def show_notes():
     result = ""
     for key, value in user_notes.get_notes():
@@ -26,6 +29,9 @@ def show_notes():
 @input_error
 def add_tags(data: str) -> str:
     note_id, *tags = data.split(" ")
+
+    if not tags:
+        return "There are no tags in your input"
     user_notes.add_tags(int(note_id), tags)
     return "Tags added"
 
@@ -47,13 +53,16 @@ def edit_note(data: str) -> str:
     return f"Note [{note_id}] edited"
 
 
-def search_notes(data: str) -> str:
+
+@input_error
+def search_notes(data):
     result = ""
     for key, value in user_notes.search_notes(data).items():
         result += print_note(key, value)
     return result
 
 
+@input_error
 def search_notes_by_tags(data: str) -> str:
     tags = data.strip().split(" ")
     result = ""

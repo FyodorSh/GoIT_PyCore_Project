@@ -1,3 +1,4 @@
+import pickle
 import re
 from collections import UserDict
 from datetime import datetime
@@ -49,7 +50,7 @@ class Email(Field):
 class Address(Field):
     @Field.value.setter
     def value(self, value):
-        if len(value) == 0:
+        if not value:
             raise ValueError("Настільки короткої адреси існувати не може")
 
         self._value = value
@@ -64,10 +65,6 @@ class Birthday(Field):
             raise ValueError("Помилкова дата дня народження")
 
         self._value = value
-
-
-class Note:
-    pass
 
 
 class Record:
@@ -95,7 +92,7 @@ class Record:
         if self.address:
             address_info = f' Address : {self.address.value}'
 
-        return f'{self.name.value} : {phones_info[:-2]}{birthday_info}{email_info}{address_info}'
+        return f'{self.name.value} : {phones_info}{birthday_info}{email_info}{address_info}'
 
     def add_phone(self, phone):
         self.phones.append(Phone(phone))
@@ -142,6 +139,10 @@ class Record:
 
 
 class AddressBook(UserDict):
+    def __init__(self):
+        super().__init__()
+        self.load_contacts_from_file()
+
     def add_record(self, record):
         self.data[record.name.value] = record
 
@@ -187,6 +188,28 @@ class AddressBook(UserDict):
 
         if page:
             yield page
+
+    def get_birthdays_in_range(self, value):
+        birthdays = []
+        if not value.isnumeric:
+            raise ValueError("Потрібно ввести число")
+        days = int(value)
+
+        for record in self.data.values():
+            if record.birthday and days >= record.get_days_to_next_birthday():
+                birthdays.append(record)
+        return birthdays
+
+    def save_contacts_to_file(self):
+        with open('address_book.pickle', 'wb') as file:
+            pickle.dump(self.data, file)
+
+    def load_contacts_from_file(self):
+        try:
+            with open('address_book.pickle', 'rb') as file:
+                self.data = pickle.load(file)
+        except FileNotFoundError:
+            pass
 
 
 address_book = AddressBook()

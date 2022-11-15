@@ -1,10 +1,10 @@
+import pickle
+
+
 class Note:
-    def __init__(self, note_text, tags=None):
+    def __init__(self, note_text):
         self.note_text = note_text
-        if not tags:
-            self.note_tags = []
-        else:
-            self.note_tags = tags
+        self.note_tags = set()
 
 
 class Notes:
@@ -12,6 +12,7 @@ class Notes:
 
     def __init__(self):
         self.notes = {}
+        self.load_notes_from_file()
 
     def add_note(self, note_text):
         self.notes[self.notes_iter] = Note(note_text)
@@ -25,7 +26,8 @@ class Notes:
             yield key, value
 
     def add_tags(self, note_id, tags):
-        self.notes[note_id].note_tags = tags
+        for tag in tags:
+            self.notes[note_id].note_tags.add(tag)
 
     def note_exist_by_id(self, note_id):
         return note_id in self.notes
@@ -51,6 +53,20 @@ class Notes:
 
     def sort_notes(self):
         return dict(sorted(self.notes.items(), key=lambda item: item[1].note_text))
+
+    def save_notes_to_file(self):
+        with open('notes.pickle', 'wb') as file:
+            pickle.dump(self.notes, file)
+
+    def load_notes_from_file(self):
+        try:
+            with open('notes.pickle', 'rb') as file:
+                self.notes = pickle.load(file)
+
+                if self.notes:
+                    self.notes_iter = len(self.notes.keys())
+        except FileNotFoundError:
+            pass
 
 
 user_notes = Notes()
