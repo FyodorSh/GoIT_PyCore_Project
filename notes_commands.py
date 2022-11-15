@@ -73,7 +73,7 @@ def search_notes_by_tags(data):
 
     output = ''
 
-    for tag in search_results:
+    for tag in sorted(search_results):
         output += f"Tag - {tag}:\n"
 
         for key, note in search_results[tag].items():
