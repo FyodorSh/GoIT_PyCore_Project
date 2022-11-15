@@ -2,12 +2,9 @@ import pickle
 
 
 class Note:
-    def __init__(self, note_text, tags=None):
+    def __init__(self, note_text):
         self.note_text = note_text
-        if not tags:
-            self.note_tags = []
-        else:
-            self.note_tags = tags
+        self.note_tags = set()
 
 
 class Notes:
@@ -29,7 +26,8 @@ class Notes:
             yield key, value
 
     def add_tags(self, note_id, tags):
-        self.notes[note_id].note_tags = tags
+        for tag in tags:
+            self.notes[note_id].note_tags.add(tag)
 
     def note_exist_by_id(self, note_id):
         return note_id in self.notes

@@ -24,6 +24,9 @@ def show_notes():
 @input_error
 def add_tags(data):
     note_id, *tags = data.split(" ")
+
+    if not tags:
+        return "There are no tags in your input"
     user_notes.add_tags(int(note_id), tags)
     return "Tags added"
 
