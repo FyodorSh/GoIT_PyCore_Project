@@ -2,7 +2,15 @@ from notes import user_notes
 from notes_decorator import input_error
 
 
-def add_note(data):
+def print_note(key, value):
+    result = 20 * "-" + "\n"
+    result += f"note id - {key}\n"
+    result += f"note text - {value.note_text}\n"
+    if value.note_tags:
+        result += f"tags - {' '.join(tag for tag in value.note_tags)}\n"
+    return result
+
+def add_note(data: str) -> str:
     note_text = data
     user_notes.add_note(note_text)
     return "New note added"
@@ -11,30 +19,26 @@ def add_note(data):
 def show_notes():
     result = ""
     for key, value in user_notes.get_notes():
-        result += 20 * "-" + "\n"
-        result += f"note id - {key}\n"
-        result += f"note text - {value.note_text}\n"
-        if value.note_tags:
-            result += f"tags - {' '.join(tag for tag in value.note_tags)}\n"
+        result += print_note(key, value)
     return result
 
 
 @input_error
-def add_tags(data):
+def add_tags(data: str) -> str:
     note_id, *tags = data.split(" ")
     user_notes.add_tags(int(note_id), tags)
     return "Tags added"
 
 
 @input_error
-def delete_note(data):
+def delete_note(data: str) -> str:
     note_id = int(data)
     user_notes.delete_note(note_id)
     return f"Note [{note_id}] deleted"
 
 
 @input_error
-def edit_note(data):
+def edit_note(data: str) -> str:
     note_id, *note_text_list = data.split(" ")
     note_id = int(note_id)
     note_text = " ".join(note_text_list)
@@ -43,12 +47,23 @@ def edit_note(data):
     return f"Note [{note_id}] edited"
 
 
-def search_notes(data):
+def search_notes(data: str) -> str:
     result = ""
     for key, value in user_notes.search_notes(data).items():
-        result += 20 * "-" + "\n"
-        result += f"note id - {key}\n"
-        result += f"note text - {value.note_text}\n"
-        if value.note_tags:
-            result += f"tags - {' '.join(tag for tag in value.note_tags)}\n"
+        result += print_note(key, value)
+    return result
+
+
+def search_notes_by_tags(data: str) -> str:
+    tags = data.strip().split(" ")
+    result = ""
+    for key, value in user_notes.search_notes_by_tags(tags).items():
+        result += print_note(key, value)
+    return result
+
+
+def sort_notes() -> str:
+    result = ""
+    for key, value in user_notes.sort_notes().items():
+        result += print_note(key, value)
     return result
