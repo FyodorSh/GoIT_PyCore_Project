@@ -2,12 +2,14 @@ from notes import user_notes
 from notes_decorator import input_error
 
 
+@input_error
 def add_note(data):
     note_text = data
     user_notes.add_note(note_text)
     return "New note added"
 
 
+@input_error
 def show_notes():
     result = ""
     for key, value in user_notes.get_notes():
@@ -43,6 +45,7 @@ def edit_note(data):
     return f"Note [{note_id}] edited"
 
 
+@input_error
 def search_notes(data):
     result = ""
     for key, value in user_notes.search_notes(data).items():
