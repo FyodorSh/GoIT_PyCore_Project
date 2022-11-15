@@ -156,9 +156,8 @@ def sort_files(path):
 
         except FileExistsError:
             index += 1
-            new_file_name = destination_folder.joinpath(
+            new_file_name = initial_path.joinpath(
                 normalize(file_name) + "_" + str(index) + suffix)
 
     all_files['Other'].append(new_file_name.name)
     unknown_types.add(suffix)
-
