@@ -53,6 +53,9 @@ class Notes:
 
         return search_result
 
+    def sort_notes(self):
+        return dict(sorted(self.notes.items(), key=lambda item: item[1].note_text))
+
     def save_notes_to_file(self):
         with open('notes.pickle', 'wb') as file:
             pickle.dump(self.notes, file)
