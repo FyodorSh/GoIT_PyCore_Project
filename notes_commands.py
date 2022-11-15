@@ -63,12 +63,24 @@ def search_notes(data):
 
 
 @input_error
-def search_notes_by_tags(data: str) -> str:
-    tags = data.strip().split(" ")
-    result = ""
-    for key, value in user_notes.search_notes_by_tags(tags).items():
-        result += print_note(key, value)
-    return result
+def search_notes_by_tags(data):
+    tags = data.split(" ")
+               
+    search_results = user_notes.search_notes_by_tags(tags)
+
+    if not search_results:
+        return "There are no notes with these tags"
+
+    output = ''
+
+    for tag in search_results:
+        output += f"Tag - {tag}:\n"
+
+        for key, note in search_results[tag].items():
+            output += f"  {key}: {note.note_text}\n"
+        output += "------------------------------------\n"
+
+    return output
 
 
 def sort_notes() -> str:
