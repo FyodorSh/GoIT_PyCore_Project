@@ -38,7 +38,7 @@ def change_phone(data):
 
 @input_error
 def delete_phone(data):
-    name, phone = data.split(' ')
+    name, phone = data.split(' ', 1)
 
     record = address_book[name]
     if record.delete_phone(phone):
@@ -72,7 +72,7 @@ def show_function():
 
 @input_error
 def birthday_func(data):
-    name, birthday_date = data.split(" ")
+    name, birthday_date = data.split(" ", 1)
     record = address_book[name]
     record.add_birthday(birthday_date)
     return f"{birthday_date} Дата дня народження створена"
@@ -100,7 +100,7 @@ def search_birthday_func(value):
 
 @input_error
 def address_func(data):
-    name, address_date = data.split(" ")
+    name, address_date = data.split(" ", 1)
     record = address_book[name]
     record.add_address(address_date)
     return f"{address_date} Тут проживає гарна людина"
@@ -108,7 +108,7 @@ def address_func(data):
 
 @input_error
 def email_func(data):
-    name, email_date = data.split(" ")
+    name, email_date = data.split(" ", 1)
     record = address_book[name]
     record.add_email(email_date)
     return f"{email_date} На цю пошту ми можемо щось надіслати)"

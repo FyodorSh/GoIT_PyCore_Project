@@ -1,8 +1,4 @@
 import difflib
-
-import classes
-import decorator
-from exceptions import CommandError
 from operations import OPERATIONS
 
 
