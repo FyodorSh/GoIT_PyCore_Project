@@ -1,4 +1,4 @@
-from exceptions import CommandError, PathError
+from exceptions import PathError
 
 
 def input_error(func):

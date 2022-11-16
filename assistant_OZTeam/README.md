@@ -11,12 +11,14 @@ Bot is compatible both with Windows and MacOS.
 Tested on python 3, probably not compatible with python 2.
 
 **Installation**
-Fast install:
 
-    pip install Addressbook-Notes-assistant
+Download package, unpack it and use next command to install it from unpacked folder:
+
+    pip install -e .
 
 **Calling**
-Launch comand line and use command `python3 -assistant`
+
+Launch comand line and use command `assistant`
 
 ## Description
 
@@ -90,10 +92,15 @@ _Note_: _At this moment bot works only with ukrainian phones, it should starts w
 The function goes through the folder specified during the call of function and checks the file extension and, depending on the extension, make a decision to which category to assign this file and will move it to appropriate folder:
 
 **"Audio":** [".mp3", ".aac", ".ac3", ".wav", ".amr", ".ogg"],
-"**Video"**: [".mp4", ".mov", ".avi", ".mkv"],
+
+**"Video"**: [".mp4", ".mov", ".avi", ".mkv"],
+
 **"Images"**: [".jpg", ".jpeg", ".png", ".svg", ".gif"],
+
 **"Documents"**: [".doc", ".docx", ".txt", ".pdf", ".xls", ".xlsx", ".pptx", ".rtf"],
+
 **"Books"**: [".fb2", ".epub", ".mobi"],
+
 **"Archives"**: [".zip", ".rar", ".tar", ".gz"]
 
 All other files remain unchanged.
@@ -136,5 +143,3 @@ Below you can find information on all comands that you can use with examples. Co
       (_example_: search tags book quote)
 
 - [ ] **_sort notes_** — With this command, the bot displays all notes in alphabetical order.
-
-

@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "assistant_OZTeam"
+version = "0.0.1"
+authors = [{ name="Fyodor"}, 
+{ name="Maya"},
+{ name="Sergiy"},
+{ name="Viktoriia"}
+]
+description = "Simple CPI assistant bot that helps you store and manage your contacts, notes and organize files"
+readme = "README.md"
+requires-python = ">=3.7"
+
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/FyodorSh/GoIT_PyCore_Project"
+"Dev Maya" = "https://github.com/MayaZerko"
+"Dev Fyodor" = "https://github.com/FyodorSh"
+"Dev Sergiy" = "https://github.com/3Seryoga"
+"Dev Viktoriia" = "https://github.com/Trotoria"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["assistant*"]
+
+[project.scripts]
+"assistant" = "assistant:main"
