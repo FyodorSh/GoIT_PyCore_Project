@@ -32,4 +32,4 @@ where = ["src"]
 include = ["assistant*"]
 
 [project.scripts]
-"assistant" = "assistant_OZTeam.assistant:main"
+"assistant" = "assistant:main"
