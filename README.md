@@ -93,7 +93,7 @@ The function goes through the folder specified during the call of function and c
 
 **"Audio":** [".mp3", ".aac", ".ac3", ".wav", ".amr", ".ogg"],
 
-"**Video"**: [".mp4", ".mov", ".avi", ".mkv"],
+**"Video"**: [".mp4", ".mov", ".avi", ".mkv"],
 
 **"Images"**: [".jpg", ".jpeg", ".png", ".svg", ".gif"],
 
