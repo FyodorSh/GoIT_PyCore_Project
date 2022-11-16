@@ -1,2 +1,0 @@
-[console_scripts]
-assistant = assistant:main

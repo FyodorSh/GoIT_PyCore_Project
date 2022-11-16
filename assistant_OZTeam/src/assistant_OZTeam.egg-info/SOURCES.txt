@@ -1,8 +1,0 @@
-README.md
-pyproject.toml
-setup.cfg
-src/assistant_OZTeam.egg-info/PKG-INFO
-src/assistant_OZTeam.egg-info/SOURCES.txt
-src/assistant_OZTeam.egg-info/dependency_links.txt
-src/assistant_OZTeam.egg-info/entry_points.txt
-src/assistant_OZTeam.egg-info/top_level.txt
