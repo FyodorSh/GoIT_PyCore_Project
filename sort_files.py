@@ -145,19 +145,5 @@ def sort_files(path):
 
             return
 
-    new_file_name = initial_path.joinpath(
-        normalize(file_name) + suffix)
-
-    index = 0
-    while True:
-        try:
-            path.rename(new_file_name)
-            break
-
-        except FileExistsError:
-            index += 1
-            new_file_name = initial_path.joinpath(
-                normalize(file_name) + "_" + str(index) + suffix)
-
-    all_files['Other'].append(new_file_name.name)
+    all_files['Other'].append(file_name)
     unknown_types.add(suffix)
