@@ -11,12 +11,12 @@ Bot is compatible both with Windows and MacOS.
 Tested on python 3, probably not compatible with python 2.
 
 **Installation**
-Fast install:
+Download package and use next command to install it from destination folder:
 
-    pip install Addressbook-Notes-assistant
+    pip install assistant_package_OZTeam -e
 
 **Calling**
-Launch comand line and use command `python3 -assistant`
+Launch comand line and use command `assistant`
 
 ## Description
 
@@ -136,5 +136,3 @@ Below you can find information on all comands that you can use with examples. Co
       (_example_: search tags book quote)
 
 - [ ] **_sort notes_** — With this command, the bot displays all notes in alphabetical order.
-
-

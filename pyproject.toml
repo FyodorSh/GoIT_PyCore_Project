@@ -20,6 +20,8 @@ classifiers = [
     "Operating System :: OS Independent",
 ]
 
+entry-points = "entry_points.txt"
+
 [project.urls]
 "Homepage" = "https://github.com/FyodorSh/GoIT_PyCore_Project"
 "Dev Maya" = "https://github.com/MayaZerko"
