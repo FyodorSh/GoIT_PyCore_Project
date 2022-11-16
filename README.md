@@ -136,3 +136,5 @@ Below you can find information on all comands that you can use with examples. Co
       (_example_: search tags book quote)
 
 - [ ] **_sort notes_** — With this command, the bot displays all notes in alphabetical order.
+
+

@@ -67,10 +67,6 @@ class Birthday(Field):
         self._value = value
 
 
-class Note:
-    pass
-
-
 class Record:
     def __init__(self, name):
         self.name = Name(name)
@@ -96,7 +92,7 @@ class Record:
         if self.address:
             address_info = f' Address : {self.address.value}'
 
-        return f'{self.name.value} : {phones_info[:-2]}{birthday_info}{email_info}{address_info}'
+        return f'{self.name.value} : {phones_info}{birthday_info}{email_info}{address_info}'
 
     def add_phone(self, phone):
         self.phones.append(Phone(phone))
