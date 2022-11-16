@@ -29,6 +29,7 @@ classifiers = [
 
 [tool.setuptools.packages.find]
 where = ["src"]
+include = ["assistant*"]
 
 [project.scripts]
 "assistant" = "assistant_OZTeam.assistant:main"
