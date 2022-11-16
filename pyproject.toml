@@ -28,5 +28,5 @@ classifiers = [
 "Dev Viktoriia" = "https://github.com/Trotoria"
 
 
-[project.entry-points]
-console_scripts = ["assistant = assistant:main"]
+[project.scripts]
+"assistant" = "assistant:main"
