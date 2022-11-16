@@ -1,0 +1,2 @@
+[console_scripts]
+assistant = assistant_OZTeam.assistant:main

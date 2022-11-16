@@ -27,6 +27,8 @@ classifiers = [
 "Dev Sergiy" = "https://github.com/3Seryoga"
 "Dev Viktoriia" = "https://github.com/Trotoria"
 
+[tool.setuptools.packages.find]
+where = ["src"]
 
 [project.scripts]
 "assistant" = "assistant_OZTeam.assistant:main"
