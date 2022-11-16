@@ -1,6 +1,6 @@
-from src.assistant_OZTeam.classes import address_book, Record
-from src.assistant_OZTeam.decorator import input_error
-from src.assistant_OZTeam.sort_files import run_sorting
+from src.classes import address_book, Record
+from src.decorator import input_error
+from src.sort_files import run_sorting
 
 
 @input_error

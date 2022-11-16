@@ -1,5 +1,5 @@
-from src.assistant_OZTeam.notes import user_notes
-from src.assistant_OZTeam.notes_decorator import input_error
+from src.notes import user_notes
+from src.notes_decorator import input_error
 
 
 def print_note(key, value):
