@@ -20,11 +20,13 @@ classifiers = [
     "Operating System :: OS Independent",
 ]
 
-entry-points = "entry_points.txt"
-
 [project.urls]
 "Homepage" = "https://github.com/FyodorSh/GoIT_PyCore_Project"
 "Dev Maya" = "https://github.com/MayaZerko"
 "Dev Fyodor" = "https://github.com/FyodorSh"
 "Dev Sergiy" = "https://github.com/3Seryoga"
 "Dev Viktoriia" = "https://github.com/Trotoria"
+
+
+[project.entry-points]
+console_scripts = ["assistant = assistant:main"]
