@@ -1,6 +1,6 @@
-from classes import address_book
-from notes import user_notes
-from parse_utils import parse_input
+from src.assistant_OZTeam.classes import address_book
+from src.assistant_OZTeam.notes import user_notes
+from src.assistant_OZTeam.parse_utils import parse_input
 
 
 def main():

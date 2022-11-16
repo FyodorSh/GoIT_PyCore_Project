@@ -1,4 +1,4 @@
-from exceptions import CommandError, PathError
+from src.assistant_OZTeam.exceptions import PathError
 
 
 def input_error(func):

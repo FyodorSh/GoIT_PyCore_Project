@@ -1,5 +1,5 @@
 import difflib
-from operations import OPERATIONS
+from src.assistant_OZTeam.operations import OPERATIONS
 
 
 def parse_input(user_input):

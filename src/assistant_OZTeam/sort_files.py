@@ -1,5 +1,5 @@
 from copy import deepcopy
-from exceptions import PathError
+from src.assistant_OZTeam.exceptions import PathError
 from pathlib import Path
 import shutil
 

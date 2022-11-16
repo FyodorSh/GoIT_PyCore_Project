@@ -1,7 +1,7 @@
-from commands import (exit_function, hello_function, add_record, del_record, change_phone, delete_phone, email_func,
+from src.assistant_OZTeam.commands import (exit_function, hello_function, add_record, del_record, change_phone, delete_phone, email_func,
                       birthday_func, next_birthday_func, address_func, show_function, search_function, folder_sorting,
                       search_birthday_func, add_phone_func)
-from notes_commands import add_note, show_notes, add_tags, delete_note, edit_note, search_notes, search_notes_by_tags,\
+from src.assistant_OZTeam.notes_commands import add_note, show_notes, add_tags, delete_note, edit_note, search_notes, search_notes_by_tags,\
     sort_notes
 
 
