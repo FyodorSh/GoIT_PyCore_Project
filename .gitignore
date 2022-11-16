@@ -1,3 +1,9 @@
 .idea
 venv
 .venv
+.vscode
+.history
+*.vsix
+__pycache__
+address_book.pickle
+notes.pickle

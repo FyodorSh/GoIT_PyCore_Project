@@ -1,2 +1,0 @@
-# GoIT_PyCore_Project
-GoIT_PyCore_Project
