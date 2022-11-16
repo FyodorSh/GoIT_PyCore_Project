@@ -3,7 +3,7 @@ requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "assistant_package_OZTeam"
+name = "assistant_OZTeam"
 version = "0.0.1"
 authors = [{ name="Fyodor"}, 
 { name="Maya"},
@@ -29,4 +29,4 @@ classifiers = [
 
 
 [project.scripts]
-"assistant" = "assistant:main"
+"assistant" = "assistant_OZTeam.assistant:main"

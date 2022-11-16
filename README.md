@@ -11,9 +11,9 @@ Bot is compatible both with Windows and MacOS.
 Tested on python 3, probably not compatible with python 2.
 
 **Installation**
-Download package and use next command to install it from destination folder:
+Download package, unpack it and use next command to install it from unpacked folder:
 
-    pip install assistant_package_OZTeam -e
+    pip install -e .
 
 **Calling**
 Launch comand line and use command `assistant`
