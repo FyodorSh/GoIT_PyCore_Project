@@ -1,4 +1,4 @@
-from src.exceptions import PathError
+from exceptions import PathError
 
 
 def input_error(func):

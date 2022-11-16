@@ -1,6 +1,6 @@
-from src.classes import address_book
-from src.notes import user_notes
-from src.parse_utils import parse_input
+from classes import address_book
+from notes import user_notes
+from parse_utils import parse_input
 
 
 def main():

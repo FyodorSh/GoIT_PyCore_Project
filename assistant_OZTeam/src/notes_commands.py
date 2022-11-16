@@ -1,5 +1,5 @@
-from src.notes import user_notes
-from src.notes_decorator import input_error
+from notes import user_notes
+from notes_decorator import input_error
 
 
 def print_note(key, value):

@@ -1,6 +1,6 @@
-from src.classes import address_book, Record
-from src.decorator import input_error
-from src.sort_files import run_sorting
+from classes import address_book, Record
+from decorator import input_error
+from sort_files import run_sorting
 
 
 @input_error

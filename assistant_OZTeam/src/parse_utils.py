@@ -1,5 +1,5 @@
 import difflib
-from src.operations import OPERATIONS
+from operations import OPERATIONS
 
 
 def parse_input(user_input):

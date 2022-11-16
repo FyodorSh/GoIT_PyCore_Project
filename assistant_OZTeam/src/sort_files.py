@@ -1,5 +1,5 @@
 from copy import deepcopy
-from src.exceptions import PathError
+from exceptions import PathError
 from pathlib import Path
 import shutil
 
