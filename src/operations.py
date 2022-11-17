@@ -1,11 +1,12 @@
 from commands import (exit_function, hello_function, add_record, del_record, change_phone, delete_phone, email_func,
                       birthday_func, next_birthday_func, address_func, show_function, search_function, folder_sorting,
-                      search_birthday_func, add_phone_func)
+                      search_birthday_func, add_phone_func, get_help)
 from notes_commands import add_note, show_notes, add_tags, delete_note, edit_note, search_notes, search_notes_by_tags,\
     sort_notes
 
 
 OPERATIONS = {
+    'help': get_help,
     'stop': exit_function,
     'exit': exit_function,
     'close': exit_function,

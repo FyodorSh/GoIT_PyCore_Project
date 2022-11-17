@@ -3,6 +3,35 @@ from decorator import input_error
 from sort_files import run_sorting
 
 
+def get_help():
+    instruction = '''
+        Start: hello or hi
+        Add new contact: add record /name/ /phone phone .../
+        Add phone: add phone /name/ /phone/
+        Add e-mail: add email /name/ /e-mail/
+        Change phone: change phone /name/ /old phone/ /new phone/
+        Delete phone: delete phone /name/ /phone/
+        Add address: add address /name/ /address/
+        Show all contacts: show contact
+        Search contacts: search /text for search/
+        Add birthday to contact: add birthday /name/ /date yyyy-mm-dd/
+        Days to next birthday: days to birthday /name/
+        Shows contacts that will have birthdays in period: birthdays in range /days/
+        Delete contact: delete record /name/
+        Sort file in folder: sort folder /folder/
+        Add note: add note /note text/
+        Show all notes: show notes
+        Add tags to note: add tags /note id/ /tag tag .../
+        Edit note: edit notes /id/ /note text/
+        Delete note: delete notes /id/
+        Search notes by note text: search notes /text/
+        Search notes by tags: search tags /tag tag .../
+        Sort notes: sort notes
+        Quit: stop, exit, close, good bye
+    '''
+    return instruction
+
+
 @input_error
 def exit_function():
     """Function for close program"""
