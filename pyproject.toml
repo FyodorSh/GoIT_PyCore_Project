@@ -12,7 +12,7 @@ authors = [{ name="Fyodor"},
 ]
 description = "Simple CPI assistant bot that helps you store and manage your contacts, notes and organize files"
 readme = "README.md"
-requires-python = ">=3.7"
+requires-python = ">=3.9"
 
 classifiers = [
     "Programming Language :: Python :: 3",

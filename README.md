@@ -8,7 +8,7 @@ GoIT_PyCore_Project
 This project represents the implementation of a personal assistant with a command line interface. The project is installed as a Python package and can be called anywhere in the system by the appropriate command after installation;
 This simple python app will help you to manage your contacts, notes and sort files on your computer.
 Bot is compatible both with Windows and MacOS.
-Tested on python 3, probably not compatible with python 2.
+Tested on python 3.9, probably not compatible with previous versions.
 
 **Installation**
 
@@ -40,6 +40,8 @@ A personal assistant can:
 
 ## How to use
 
+To get short tips on how to use you can call **_help_** command at any time during your work with assistant
+
 ### Address Book
 
 You can use this bot to create your contacts book, in wich you can store Names, Phones, Emails, Birthdays and Addresses.
@@ -63,8 +65,8 @@ _Note_: _At this moment bot works only with ukrainian phones, it should starts w
 - [ ] **_change phone ..._** With this command, the bot deletes old phones and stores the new phone number of the existing contact in memory. Instead of **...** the user enters the name, phone number needed to be changed and new phone number, necessarily with a space.
       (_example:_ change phone Dumbledore 380991231234 380441231234)
 
-- [ ] - [ ] **_delete phone ..._** With this command, the bot deletes phone number to existing contact. Instead of **...** the user enters the name and phone number, necessarily with a space.
-        (_example:_ add phone Dumbledore 380931231234)
+- [ ] **_delete phone ..._** With this command, the bot deletes phone number to existing contact. Instead of **...** the user enters the name and phone number, necessarily with a space.
+      (_example:_ add phone Dumbledore 380931231234)
 
 - [ ] **_add address ..._** With this command, the bot adds address to existing contact. Instead of **...** the user enters the name and address, necessarily with a space.
       (_example:_ add address Dumbledore Headmaster's Office, Hogwarts Castle, Highlands, Scotland, Great Britain)
@@ -126,6 +128,8 @@ All empty folders after sorting will be deleted.
 
 You can use this bot to create your personal text Notes with tags and manage it.
 Below you can find information on all comands that you can use with examples. Commands are not case sensative.
+
+#### Commands:
 
 - [ ] **_add note_** _<note text\>_ — With this command, the bot adds a new note. (_example_: add note It does not do well to dwell on dreams and forget to live.)
 - [ ] **_show notes_** — With this command, the bot displays all notes with their "id" and tags.
