@@ -12,13 +12,13 @@ def get_help():
         Change phone: change phone /name/ /old phone/ /new phone/
         Delete phone: delete phone /name/ /phone/
         Add address: add address /name/ /address/
-        Show all contacts: show contact
+        Show all contacts: show all
         Search contacts: search /text for search/
         Add birthday to contact: add birthday /name/ /date yyyy-mm-dd/
         Days to next birthday: days to birthday /name/
         Shows contacts that will have birthdays in period: birthdays in range /days/
         Delete contact: delete record /name/
-        Sort file in folder: sort folder /folder/
+        Sort file in folder: sort folder /path to folder/
         Add note: add note /note text/
         Show all notes: show notes
         Add tags to note: add tags /note id/ /tag tag .../
