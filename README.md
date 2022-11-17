@@ -8,7 +8,7 @@ GoIT_PyCore_Project
 This project represents the implementation of a personal assistant with a command line interface. The project is installed as a Python package and can be called anywhere in the system by the appropriate command after installation;
 This simple python app will help you to manage your contacts, notes and sort files on your computer.
 Bot is compatible both with Windows and MacOS.
-Tested on python 3, probably not compatible with python 2.
+Tested on python 3.9, probably not compatible with previous versions.
 
 **Installation**
 
